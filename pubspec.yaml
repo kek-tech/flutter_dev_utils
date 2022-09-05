@@ -1,7 +1,9 @@
 name: flutter_dev_utils
 description: A new Flutter package project.
 version: 0.0.1
-homepage:
+homepage: https://github.com/Kek-Tech/flutter_dev_utils
+
+publish_to: none
 
 environment:
   sdk: '>=2.18.0-271.7.beta <3.0.0'
@@ -10,6 +12,12 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  logger:
+    git:
+      url: https://github.com/Kek-Tech/logger.git
+      ref: master
+
+    
 
 dev_dependencies:
   flutter_test:

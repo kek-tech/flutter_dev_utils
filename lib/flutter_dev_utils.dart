@@ -1,7 +1,4 @@
 library flutter_dev_utils;
 
-/// A Calculator.
-class Calculator {
-  /// Returns [value] plus 1.
-  int addOne(int value) => value + 1;
-}
+export 'src/try_catch_handler/sync_try_catch_handler.dart';
+export 'src/try_catch_handler/async_try_catch_handler.dart';
