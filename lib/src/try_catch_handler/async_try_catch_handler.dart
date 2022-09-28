@@ -1,4 +1,4 @@
-import 'package:flutter_dev_utils/src/logger.dart';
+import 'package:flutter_dev_utils/src/try_catch_handler/logger.dart';
 import 'package:flutter_dev_utils/src/try_catch_handler/catch_utils.dart';
 
 /// Asynchronous try and catch handler to reduce boilerplate
