@@ -1,39 +1,43 @@
-<!--
-This README describes the package. If you publish this package to pub.dev,
-this README's contents appear on the landing page for your package.
+# flutter_dev_utils
 
-For information about how to write a good package README, see the guide for
-[writing package pages](https://dart.dev/guides/libraries/writing-package-pages).
-
-For general information about developing packages, see the Dart guide for
-[creating packages](https://dart.dev/guides/libraries/create-library-packages)
-and the Flutter guide for
-[developing packages and plugins](https://flutter.dev/developing-packages).
--->
-
-TODO: Put a short description of the package here that helps potential users
-know whether this package might be useful for them.
+Flutter dev utils to make your life easier
 
 ## Features
 
-TODO: List what your package can do. Maybe include images, gifs, or videos.
-
-## Getting started
-
-TODO: List prerequisites and provide or point to information on how to
-start using the package.
+* Sync and async tryCatchHandler
+  * Used for state management to ensure you never miss an exception.
+* CallerLogger
+  * Built off logger package with functionality to print caller, ignore certain callers, and filter printed logs by caller type
 
 ## Usage
 
-TODO: Include short and useful examples for package users. Add longer examples
-to `/example` folder.
+### CallerLogger
+```
+var logger = CallerLogger(
+  ignoreCallers: {
+    'syncTryCatchHandler', // logs from this function will be ignored
+  },
+  filter: TypeFilter(
+    ignoreTypes: {
+      IgnoredClass, // logs from this class will be ignored
+    },
+    ignoreLevel: Level.warning, // logs of Level.warning and anove will always be shown
+  ),
+  level: Level.verbose, // show logs of Level.verbose and above
+);
+```
+See example/main_caller_logger.dart for more info.
 
-```dart
-const like = 'sample';
+### tryCatchHandler
+```
+syncTryCatchHandler(
+      tryFunction: () =>
+          jsonDecode('notJson'), // this should throw an exception and print a detailed log
+    );
 ```
 
 ## Additional information
 
-TODO: Tell users more about the package: where to find more information, how to
+TODO: how to
 contribute to the package, how to file issues, what response they can expect
 from the package authors, and more.
