@@ -1,13 +1,15 @@
-import 'package:flutter_dev_utils/src/try_catch_handler/logger.dart';
-import 'package:flutter_dev_utils/src/try_catch_handler/catch_utils.dart';
+import 'package:flutter_dev_utils/src/try_handler/logger.dart';
+import 'package:flutter_dev_utils/src/try_handler/catch_utils.dart';
 
 /// Synchronous try and catch handler to reduce boilerplate
 ///
 /// Should be called in a State file
-dynamic syncTryCatchHandler(
-    {required dynamic Function() tryFunction,
-    Map<dynamic, dynamic Function(Object e)>? catchKnownExceptions,
-    dynamic Function()? catchUnknownExceptions}) {
+dynamic syncTryHandler({
+  required dynamic Function() tryFunction,
+  Map<dynamic, dynamic Function(Object e)>? catchKnownExceptions,
+  dynamic Function(Object e)? catchUnknownExceptions,
+  dynamic finallyReturn,
+}) {
   //! Validate Catch Known
   if (catchKnownExceptions != null) {
     validateCatchKnownExceptions(catchKnownExceptions);
@@ -40,6 +42,11 @@ dynamic syncTryCatchHandler(
   } catch (e, s) {
     //! Handle Unknown Errors and Exceptions
     utilsLogger.e('Caught unknown exception', e, s);
-    return catchUnknownExceptions?.call();
+    return catchUnknownExceptions?.call(e);
+  } finally {
+    //! Finally
+    // ignore: control_flow_in_finally
+    return finallyReturn;
+    // this lint gets called because finally blocks should return const value
   }
 }

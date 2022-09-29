@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'dart:convert';
 
 import 'package:flutter_dev_utils/src/caller_logger/caller_logger.dart';

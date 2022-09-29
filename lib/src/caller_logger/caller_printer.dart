@@ -50,7 +50,7 @@ class CallerPrinter extends LogPrinter {
     var errorStr = event.error != null ? '\nERROR: ${event.error}' : '';
     var timeStr = printTime ? 'TIME: ${DateTime.now().toIso8601String()}' : '';
 
-    var stackTraceStr;
+    String? stackTraceStr;
     if (event.stackTrace == null) {
       if (methodCount > 0) {
         stackTraceStr = _formatStackTrace(StackTrace.current, methodCount);
@@ -60,7 +60,7 @@ class CallerPrinter extends LogPrinter {
     }
     stackTraceStr = stackTraceStr == null
         ? ''
-        : '\n' + stackTraceStr + '\n========================================';
+        : '\n $stackTraceStr \n========================================';
 
     return [
       '${_labelFor(event.level)} $timeStr$messageStr$errorStr$stackTraceStr'
@@ -77,7 +77,7 @@ class CallerPrinter extends LogPrinter {
   String _stringifyMessage(dynamic message) {
     final finalMessage = message is Function ? message() : message;
     if (finalMessage is Map || finalMessage is Iterable) {
-      var encoder = JsonEncoder.withIndent(null);
+      var encoder = const JsonEncoder.withIndent(null);
       return encoder.convert(finalMessage);
     } else {
       return finalMessage.toString();

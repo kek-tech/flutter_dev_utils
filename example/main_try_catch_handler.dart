@@ -1,8 +1,8 @@
+// ignore_for_file: avoid_print
+
 import 'dart:convert';
 
 import 'package:flutter_dev_utils/flutter_dev_utils.dart';
-import 'package:flutter_dev_utils/src/caller_logger/caller_logger.dart';
-import 'package:logger/logger.dart';
 
 void main() {
   print(
@@ -12,20 +12,20 @@ void main() {
 
 class Demo {
   static void run() {
-    syncTryCatchHandler(tryFunction: () {
+    syncTryHandler(tryFunction: () {
       CallerLogger().i('It works!'); // this should print
       return true;
     });
 
-    asyncTryCatchHandler(tryFunction: () async {
+    asyncTryHandler(tryFunction: () async {
       CallerLogger().i('It works!'); // this should print
       return true;
     });
-    syncTryCatchHandler(
+    syncTryHandler(
       tryFunction: () =>
           jsonDecode('notJson'), // this should throw an exception
     );
-    asyncTryCatchHandler(
+    asyncTryHandler(
       tryFunction: () =>
           jsonDecode('notJson'), // this should throw an exception
     );

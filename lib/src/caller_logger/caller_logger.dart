@@ -26,14 +26,14 @@ class CallerLogger extends Logger {
   }) {
     /// Skip callers in stack trace so that the more relevant caller is printed,
     /// e.g., methods from the loggers or utility functions
-    final _defaultIgnoreCallers = {
+    final defaultIgnoreCallers = {
       'CallerLogger.log',
       'Logger.',
     };
     if (ignoreCallers == null) {
-      ignoreCallers = _defaultIgnoreCallers;
+      ignoreCallers = defaultIgnoreCallers;
     } else {
-      ignoreCallers.addAll(_defaultIgnoreCallers);
+      ignoreCallers.addAll(defaultIgnoreCallers);
     }
     return CallerLogger._(
       filter: filter,
@@ -61,6 +61,6 @@ class CallerLogger extends Logger {
         break; // exit loop to save first caller which is not from the logger
       }
     }
-    super.log(level, caller + ': ' + message, error, stackTrace);
+    super.log(level, '$caller: $message', error, stackTrace);
   }
 }
