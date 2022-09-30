@@ -1,3 +1,8 @@
+## 0.0.1+1
+
+* Exposed Help classes
+* Updated README
+
 ## 0.0.1
 
 * Added Help classes
