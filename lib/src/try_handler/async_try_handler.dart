@@ -8,7 +8,7 @@ Future<dynamic> asyncTryHandler({
   required Future<dynamic> Function() tryFunction,
   Map<dynamic, Future<dynamic> Function(Object e)>? catchKnownExceptions,
   Future<dynamic> Function(Object e)? catchUnknownExceptions,
-  dynamic finallyReturn,
+  void Function()? finallyFunction,
 }) async {
   //! Validate Catch Known
   if (catchKnownExceptions != null) {
@@ -17,7 +17,7 @@ Future<dynamic> asyncTryHandler({
   try {
     //! Main Try
     try {
-      return tryFunction.call();
+      return await tryFunction.call();
     } catch (e, s) {
       //! Handle Known Errors and Exceptions
 
@@ -33,7 +33,7 @@ Future<dynamic> asyncTryHandler({
 
         if (callback != null) {
           utilsLogger.w('Handling known exception', e, s);
-          return callback!.call(e);
+          return await callback!.call(e);
         } else {
           rethrow;
         }
@@ -42,11 +42,9 @@ Future<dynamic> asyncTryHandler({
   } catch (e, s) {
     //! Handle Unknown Errors and Exceptions
     utilsLogger.e('Caught unknown exception', e, s);
-    return catchUnknownExceptions?.call(e);
+    return await catchUnknownExceptions?.call(e);
   } finally {
     //! Finally
-    // ignore: control_flow_in_finally
-    return finallyReturn;
-    // this lint gets called because finally blocks should return const value
+    finallyFunction?.call();
   }
 }

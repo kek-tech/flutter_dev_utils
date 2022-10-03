@@ -8,7 +8,7 @@ dynamic syncTryHandler({
   required dynamic Function() tryFunction,
   Map<dynamic, dynamic Function(Object e)>? catchKnownExceptions,
   dynamic Function(Object e)? catchUnknownExceptions,
-  dynamic finallyReturn,
+  void Function()? finallyFunction,
 }) {
   //! Validate Catch Known
   if (catchKnownExceptions != null) {
@@ -45,8 +45,6 @@ dynamic syncTryHandler({
     return catchUnknownExceptions?.call(e);
   } finally {
     //! Finally
-    // ignore: control_flow_in_finally
-    return finallyReturn;
-    // this lint gets called because finally blocks should return const value
+    finallyFunction?.call();
   }
 }
