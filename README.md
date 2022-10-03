@@ -9,7 +9,7 @@ Flutter dev utils to make your life easier
 * CallerLogger
   * Built off logger package with functionality to print caller, ignore certain callers, and filter printed logs by caller type
 * Help
-  * HelpFoo classes which can be used for inline code help.
+  * Stop clicking those purple stackoverflow links! HelpFoo classes can be used for inline code help.
 
   ![Alt Text](https://github.com/Kek-Tech/flutter_dev_utils/blob/main/assets/HelpClass.gif)
 
