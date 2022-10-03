@@ -1,6 +1,17 @@
+## 0.0.1+4
+
+* Modified tryHandler finally clause as returning value in finally causes return in try and catch to be overridden. 
+* Updated example
+
+## 0.0.1+3
+
+* Added more Help classes
+* Added await to asyncTryHandler
+
+
 ## 0.0.1+2
 
-* Added a lot more help classes 
+* Added a lot more Help classes 
 
 ## 0.0.1+1
 

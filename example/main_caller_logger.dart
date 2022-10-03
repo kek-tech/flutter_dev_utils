@@ -22,10 +22,10 @@ var logger = CallerLogger(
 void main() {
   print(
       'Run with either `dart example/main_caller_logger.dart` or `dart --enable-asserts example/main_caller_logger.dart`.');
-  demo();
+  callerLoggerDemo();
 }
 
-void demo() {
+void callerLoggerDemo() {
   /// Settings are such that:
   ///
   /// 1. All logs in ExampleClass are printed (because level: Level.verbose)
