@@ -26,7 +26,7 @@ class CallerLogger extends Logger {
   }) {
     /// Skip callers in stack trace so that the more relevant caller is printed,
     /// e.g., methods from the loggers or utility functions
-    final defaultIgnoreCallers = {
+    final defaultIgnoreCallers = <String>{
       'CallerLogger.log',
       'Logger.',
     };

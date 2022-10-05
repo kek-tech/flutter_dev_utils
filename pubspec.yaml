@@ -1,6 +1,6 @@
 name: flutter_dev_utils
 description: Developer utils to make your life easier; e.g. try handlers to easily find source of bug, help classes for code editor inline tips.
-version: 0.0.1+4
+version: 0.0.2
 homepage: https://github.com/Kek-Tech/flutter_dev_utils
 
 # publish_to: none # Remove this line if you wish to publish to pub.dev

@@ -1,3 +1,8 @@
+## 0.0.2
+
+* Modified TypeFilter to extend ProductionFilter instead of DevelopmentFilter so that the stackTrace is always printed.
+* Tidied up example/main.dart
+
 ## 0.0.1+4
 
 * Modified tryHandler finally clause as returning value in finally causes return in try and catch to be overridden. 

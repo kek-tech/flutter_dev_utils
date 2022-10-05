@@ -9,7 +9,7 @@ import 'package:logger/logger.dart';
 /// and you are working in Level.debug, but only need the logs for ExampleClass1,
 /// then you can initialise [ignoreTypes] with {ExampleClass2}, and logs from
 /// ExampleClass 2 will not be shown.
-class TypeFilter extends DevelopmentFilter {
+class TypeFilter extends ProductionFilter {
   TypeFilter({required this.ignoreTypes, required this.ignoreLevel});
 
   /// Sets the caller types where logs should not be printed below a certain ignoreLevel
@@ -23,7 +23,7 @@ class TypeFilter extends DevelopmentFilter {
 
   @override
   bool shouldLog(LogEvent event) {
-    // Ignore printing of callers of types included in ignoreClass so that you
+    // Ignore printing of callers of types included in ignoreTypes
     //
     if (ignoreTypes.any(
         (element) => event.message.toString().contains(element.toString()))) {

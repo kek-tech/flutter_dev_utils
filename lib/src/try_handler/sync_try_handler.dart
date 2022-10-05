@@ -2,8 +2,6 @@ import 'package:flutter_dev_utils/src/try_handler/logger.dart';
 import 'package:flutter_dev_utils/src/try_handler/catch_utils.dart';
 
 /// Synchronous try and catch handler to reduce boilerplate
-///
-/// Should be called in a State file
 dynamic syncTryHandler({
   required dynamic Function() tryFunction,
   Map<dynamic, dynamic Function(Object e)>? catchKnownExceptions,

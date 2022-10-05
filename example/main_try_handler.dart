@@ -10,16 +10,18 @@ void main() {
   tryHandlerDemo();
 }
 
-void tryHandlerDemo() async {
+Future<void> tryHandlerDemo() async {
   final syncResult = syncTryHandler(tryFunction: () {
-    print('It works!'); // this should print
+    print(
+        'Running synchronous try handler which should return true'); // this should print
     return true;
   });
 
   print('This should be true: $syncResult');
 
   final asyncResult = await asyncTryHandler(tryFunction: () async {
-    print('It works!'); // this should print
+    print(
+        'Running asynchronous try handler which should return true'); // this should print
     return true;
   });
 
@@ -28,7 +30,7 @@ void tryHandlerDemo() async {
   syncTryHandler(
     tryFunction: () => jsonDecode('notJson'), // this should throw an exception
   );
-  asyncTryHandler(
+  await asyncTryHandler(
     tryFunction: () => jsonDecode('notJson'), // this should throw an exception
   );
 }
