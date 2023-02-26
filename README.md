@@ -42,6 +42,9 @@ syncTryCatchHandler(
 
 ## Additional information
 
-TODO: how to
-contribute to the package, how to file issues, what response they can expect
-from the package authors, and more.
+### Making Changes
+1. Run `flutter test`
+2. Change version number in pubspec.yaml
+3. Update CHANGELOG.md
+4. Run `dart pub publish --dry-run`
+5. Run `dart pub publish`
