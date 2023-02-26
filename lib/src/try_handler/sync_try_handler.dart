@@ -1,4 +1,3 @@
-import 'package:flutter_dev_utils/src/try_handler/logger.dart';
 import 'package:flutter_dev_utils/src/try_handler/catch_utils.dart';
 
 /// Synchronous try and catch handler to reduce boilerplate
@@ -16,10 +15,10 @@ dynamic syncTryHandler({
     //! Main Try
     try {
       return tryFunction.call();
-    } catch (e, s) {
+    } catch (e) {
       //! Handle Known Errors and Exceptions
 
-      if (e is! Error || e is! Exception || catchKnownExceptions == null) {
+      if ((e is! Error && e is! Exception) || catchKnownExceptions == null) {
         rethrow;
       } else {
         dynamic Function(Object e)? callback;
@@ -30,16 +29,14 @@ dynamic syncTryHandler({
         });
 
         if (callback != null) {
-          utilsLogger.w('Handling known exception', e, s);
           return callback!.call(e);
         } else {
           rethrow;
         }
       }
     }
-  } catch (e, s) {
+  } catch (e) {
     //! Handle Unknown Errors and Exceptions
-    utilsLogger.e('Caught unknown exception', e, s);
     return catchUnknownExceptions?.call(e);
   } finally {
     //! Finally

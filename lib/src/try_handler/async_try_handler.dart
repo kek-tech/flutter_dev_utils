@@ -1,5 +1,5 @@
-import 'package:flutter_dev_utils/src/try_handler/logger.dart';
 import 'package:flutter_dev_utils/src/try_handler/catch_utils.dart';
+import 'package:flutter_dev_utils/src/try_handler/logger.dart';
 
 /// Asynchronous try and catch handler to reduce boilerplate
 ///
@@ -18,10 +18,10 @@ Future<dynamic> asyncTryHandler({
     //! Main Try
     try {
       return await tryFunction.call();
-    } catch (e, s) {
+    } catch (e) {
       //! Handle Known Errors and Exceptions
 
-      if (e is! Error || e is! Exception || catchKnownExceptions == null) {
+      if ((e is! Error && e is! Exception) || catchKnownExceptions == null) {
         rethrow;
       } else {
         Future<dynamic> Function(Object e)? callback;
@@ -32,7 +32,6 @@ Future<dynamic> asyncTryHandler({
         });
 
         if (callback != null) {
-          utilsLogger.w('Handling known exception', e, s);
           return await callback!.call(e);
         } else {
           rethrow;
