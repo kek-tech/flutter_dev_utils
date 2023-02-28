@@ -1,13 +1,12 @@
 import 'package:flutter_dev_utils/src/try_handler/catch_utils.dart';
-import 'package:flutter_dev_utils/src/try_handler/logger.dart';
 
 /// Asynchronous try and catch handler to reduce boilerplate
 ///
 /// Should be called in a State file
-Future<dynamic> asyncTryHandler({
-  required Future<dynamic> Function() tryFunction,
-  Map<dynamic, Future<dynamic> Function(Object e)>? catchKnownExceptions,
-  Future<dynamic> Function(Object e)? catchUnknownExceptions,
+Future<T> asyncTryHandler<T>({
+  required Future<T> Function() tryFunction,
+  Map<dynamic, Future<T> Function(Object e)>? catchKnownExceptions,
+  Future<T> Function(Object e)? catchUnknownExceptions,
   void Function()? finallyFunction,
 }) async {
   //! Validate Catch Known
@@ -38,10 +37,13 @@ Future<dynamic> asyncTryHandler({
         }
       }
     }
-  } catch (e, s) {
+  } catch (e) {
     //! Handle Unknown Errors and Exceptions
-    utilsLogger.e('Caught unknown exception', e, s);
-    return await catchUnknownExceptions?.call(e);
+    if (catchUnknownExceptions == null) {
+      rethrow;
+    }
+
+    return await catchUnknownExceptions.call(e);
   } finally {
     //! Finally
     finallyFunction?.call();

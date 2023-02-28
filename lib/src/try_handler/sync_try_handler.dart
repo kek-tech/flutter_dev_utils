@@ -1,10 +1,10 @@
 import 'package:flutter_dev_utils/src/try_handler/catch_utils.dart';
 
 /// Synchronous try and catch handler to reduce boilerplate
-dynamic syncTryHandler({
-  required dynamic Function() tryFunction,
-  Map<dynamic, dynamic Function(Object e)>? catchKnownExceptions,
-  dynamic Function(Object e)? catchUnknownExceptions,
+T syncTryHandler<T>({
+  required T Function() tryFunction,
+  Map<dynamic, T Function(Object e)>? catchKnownExceptions,
+  T Function(Object e)? catchUnknownExceptions,
   void Function()? finallyFunction,
 }) {
   //! Validate Catch Known
@@ -37,7 +37,10 @@ dynamic syncTryHandler({
     }
   } catch (e) {
     //! Handle Unknown Errors and Exceptions
-    return catchUnknownExceptions?.call(e);
+    if (catchUnknownExceptions == null) {
+      rethrow;
+    }
+    return catchUnknownExceptions.call(e);
   } finally {
     //! Finally
     finallyFunction?.call();

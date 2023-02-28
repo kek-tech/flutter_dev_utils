@@ -1,6 +1,11 @@
+## 0.0.3
+
+* Added typing to tryHandlers to catch static errors 
+
 ## 0.0.2+1
 
 * Fixed catchKnownExceptions
+
 ## 0.0.2
 
 * Modified TypeFilter to extend ProductionFilter instead of DevelopmentFilter so that the stackTrace is always printed.
